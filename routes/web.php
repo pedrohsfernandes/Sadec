@@ -22,14 +22,19 @@ Route::get('/truck', function () {
 Route::get('truck', [TruckController::class, 'create']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/truck', [ProfileController::class, 'create'])->name('truck');
+    Route::get('/profile', [ProfileController::class, 'create'])->name('profile.create');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/truck', [TruckController::class, 'create'])->name('truck');
+    Route::get('/truck', [TruckController::class, 'create'])->name('truck.create');
+    Route::post('/users', [TruckController::class, 'store'])->name('truck.store');
+    Route::get('/users/{user}', [TruckController::class, 'show'])->name('truck.show');
+    Route::get('/users/{user}/edit', [TruckController::class, 'edit'])->name('truck.edit');
+    Route::put('/users/{user}', [TruckController::class, 'update'])->name('truck.update');
+Route::delete('/users/{user}', [TruckController::class, 'destroy'])->name('truck.destroy');
 
 
 });

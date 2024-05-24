@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('placa');
             $table->string('modelo');
             $table->string('ano');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

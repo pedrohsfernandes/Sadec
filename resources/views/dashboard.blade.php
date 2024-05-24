@@ -1,4 +1,7 @@
 <x-app-layout>
+    <link rel="stylesheet" href=" {{asset ('public/index.php')}}">
+    <script src="{{ asset('resources/app.css')}}"></script>
+    
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}

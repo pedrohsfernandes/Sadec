@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
+use id;
 use App\Models\truck;
 use Illuminate\Http\Request;
 
 class TruckController extends Controller
 {
-
+    public readonly Truck $truck;
+    public function __construct()
+    {
+        $this->truck = new Truck();
+    }
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +35,18 @@ class TruckController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->truck->create ([
+
+            'placa'=> $request->input ('placa'),
+            'modelo'=> $request->input ('modelo'),
+            'ano'=> $request->input ('ano'),
+            'user_id'=> $request->input ('user_id'),
+        ]);
+           
+        if ($created)
+        {
+            return view('company');
+        }
     }
 
     /**
@@ -37,7 +54,7 @@ class TruckController extends Controller
      */
     public function show(truck $truck)
     {
-        //
+        return view('card',['truck'=>$truck]);
     }
 
     /**
@@ -59,8 +76,10 @@ class TruckController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(truck $truck)
+    public function destroy(string $id)
     {
-        //
+        $this->truck->where('id', $id)->delete();
+
+        return redirect()->route('dashboard.index');
     }
 }

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class truck extends Model
 {
-    use HasFactory;
+    protected $fillable = 
+    [
+        'placa',
+        'modelo',
+        'ano',
+        'user_id',
+    ];
 }
